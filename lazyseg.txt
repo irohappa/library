@@ -1,0 +1,31 @@
+
+struct S{
+	mint a;
+	S(){
+        a = 0;
+	}
+	S(mint x):a(x){}
+};
+S op(S a,S b){
+    
+    return a;
+}
+S e(){
+    return S();
+}
+struct F{
+	ll a,b;
+	F(){}
+	F(){}
+};
+S map(F a,S b){
+
+    return b;
+}
+F com(F f,F g){
+	
+    return f;
+}
+F id(){
+    return F();
+}

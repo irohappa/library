@@ -1,0 +1,15 @@
+
+struct S{
+	ll a;
+	S(){
+        a = 0;
+	}
+	S(mint x):a(x){}
+};
+S op(S a,S b){
+    
+    return a;
+}
+S e(){
+    return S();
+}

@@ -1,0 +1,6 @@
+ll op(ll a,ll b){
+	return max(a,b);
+}
+ll e(){
+	return -inf;
+}

@@ -1,0 +1,15 @@
+ll op(ll a,ll b){
+    return max(a,b);
+}
+ll e(){
+    return 0ll;
+}
+ll map(ll a,ll b){
+    return a + b;
+}
+ll com(ll a,ll b){
+    return a + b;
+}
+ll id(){
+    return 0ll;
+}
