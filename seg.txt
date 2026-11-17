@@ -4,7 +4,7 @@ struct S{
 	S(){
         a = 0;
 	}
-	S(mint x):a(x){}
+	S(ll x):a(x){}
 };
 S op(S a,S b){
     

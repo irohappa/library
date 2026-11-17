@@ -1,0 +1,135 @@
+/*＿＿＿＿＿＿
+　　 ||　　　　  　|
+　　 ||ACはこちらへ|
+　　 ||　　　　  　|
+　　 ||￣￣￣￣￣￣ 
+∧_∧||
+(`･ω･||
+（ つ||０
+　uｰu*/ //https://github.com/irohappa/library
+#include <bits/stdc++.h>
+using namespace std;
+//output and debug
+template <class T> using V = vector<T>;
+template <class T, class U> 
+ostream& operator<<(ostream& os, const pair<T, U>& p) {
+    return os << "P(" << p.first << ", " << p.second << ")";
+}
+template <class T> ostream& operator<<(ostream& os,const V<T>& v) {
+    os << "[";
+    bool f = false;
+    for (auto d : v) {
+        if (f) os << ", ";
+        f = true;
+        os << d;
+    }
+    return os << "]";
+}
+template <class T> ostream& operator<<(ostream& os,const set<T>& s) {
+    os << "{";
+    bool f = false;
+    for (auto d : s) {
+        if (f) os << ", ";
+        f = true;
+        os << d;
+    }
+    return os << "}";
+}
+template <class T> ostream& operator<<(ostream& os, const multiset<T>& s) {
+    os << "{";
+    bool f = false;
+    for (auto d : s) {
+        if (f) os << ", ";
+        f = true;
+        os << d;
+    }
+    return os << "}";
+}
+template <class T, class U>
+ostream& operator<<(ostream& os, const map<T, U>& s) {
+    os << "{";
+    bool f = false;
+    for (auto p : s) {
+        if (f) os << ", ";
+        f = true;
+        os << p.first << ": " << p.second;
+    }
+    return os << "}";
+}
+template<class T, class... Ts>
+void o(const T& a, const Ts&... b){
+    cout << a;
+    (cout << ... << (cout << ' ', b));
+    cout << '\n';
+}
+#ifdef LOCAL
+#define dbg(...)                                            \
+    do {                                                    \
+        cerr << __LINE__ << " : " << #__VA_ARGS__ << " = "; \
+        o(__VA_ARGS__);                                  \
+        cerr << endl;                                       \
+    } while (false);
+#else
+#define dbg(...)
+#endif
+// input
+template<class... T>
+void in(T&... a){
+    (cin >> ... >> a);
+}
+template<class T> void in(vector<T>& a){ for(auto&& i : a) in(i); }
+template<class T, class L> void in(pair<T, L>& p){ in(p.first); in(p.second); }
+template<class T> void in(T& a){ cin >> a; }
+
+#define rep1(n)          for(ll i = 0; i < n; ++i)
+#define rep2(i, n)       for(ll i = 0; i < n; ++i)
+#define rep3(i, j, n)    for(ll i = j; i < n; ++i)
+#define overload3(a, b, c,  e, ...) e
+#define rep(...) overload3(__VA_ARGS__, rep3, rep2, rep1)(__VA_ARGS__)
+#define rrep(i,n) for(ll i = n-1;i>=0;--i)
+#define all(x) (x).begin(),(x).end()
+#define rall(x) (x).rbegin(),(x).rend()
+using ll = long long ;
+using ld = long double;
+using pa = pair<ll,ll>;
+using t2 = tuple<ll,ll>;
+using tu = tuple<ll,ll,ll>;
+using vi = vector<ll>;
+using vs = vector<string>;
+using vp = vector<pa>;
+using vvi = vector<vi>;
+using vvp = vector<vp>;
+using vvvi = vector<vvi>;
+using v4 = vector<vvvi>;
+using vt = vector<tu>;
+const ll INF = (1ll << 29);
+const ll inf = INF*INF;
+const int dh[4]={1,-1,0,0};
+const int dw[4]={0,0,1,-1};
+const int dy[4]={1,-1,0,0};
+const int dx[4]={0,0,1,-1};
+const string mv = "DURL";
+void Yes(bool i = true){ return o(i?"Yes":"No"); }
+
+//reversed priority_queue
+template<class T>
+class prique :public std::priority_queue<T, std::vector<T>, std::greater<T>> {};
+
+bool chmin(ll &x,ll y){
+    x = min(x,y);
+    return (x==y);
+}
+bool chmax(ll &x,ll y){
+    x = max(x,y);
+    return (x==y);
+}
+
+#include <atcoder/all>
+using namespace atcoder;
+//using mint = modint998244353;
+
+int main(){
+    ll n;
+    in(n);
+    
+}
