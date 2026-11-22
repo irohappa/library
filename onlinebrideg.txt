@@ -1,0 +1,119 @@
+struct OnlineBridge{
+    ll n,cnt = 0,it = 0;
+    vi dsu,uf,ufsi,par,lastv;
+
+    OnlineBridge(int n) : n(n){
+        dsu.assign(n,0);
+        uf.assign(n,0);
+        ufsi.assign(n,1);
+        par.assign(n,-1);
+        lastv.assign(n,0);
+        iota(all(dsu),0);
+        iota(all(uf),0);
+    }
+
+    ll dsuroot(int v){
+        if(v == -1) return -1;
+        if(dsu[v] == v) return v;
+        return dsu[v] = dsuroot(dsu[v]);
+    }
+    ll ufroot(int v){
+        v = dsuroot(v);
+        if(uf[v] == v) return v;
+        return uf[v] = ufroot(uf[v]);
+    }
+
+    void make_root(ll v){
+        v = dsuroot(v);
+        ll root = v;
+        ll child = -1;
+        while(v != -1){
+            ll pe = dsuroot(par[v]);
+            par[v] = child;
+            uf[v] = root;
+            child = v;
+            v = pe;
+        }
+        ufsi[root] = ufsi[child];
+    }
+    void se(ll& v,vi &pas,ll &lca){
+        if(v == -1) return;
+        v = dsuroot(v);
+        pas.push_back(v);
+        if(lastv[v] == it){
+            lca = v;
+            return;
+        }
+        lastv[v] = it;
+        v = par[v];
+    }
+    void merge_path(ll u,ll v){
+        ++it;
+        vi path_u, path_v;
+        ll lca = -1;
+        while(lca == -1){
+            se(u,path_u,lca);
+            if(lca != -1) break;
+            se(v,path_v,lca);
+        }
+        for(auto nv : path_v){
+            dsu[nv] = lca;
+            if(nv == lca) break;
+            --cnt;
+        }
+        for(auto nv : path_u){
+            dsu[nv] = lca;
+            if(nv == lca) break;
+            --cnt;
+        }
+    }
+    void add_edge(ll u,ll v){
+        u = dsuroot(u);
+        v = dsuroot(v);
+        if(u == v) return;
+        ll ru = ufroot(u), rv = ufroot(v);
+
+        if(ru != rv){
+            ++cnt;
+            if(ufsi[ru] > ufsi[rv]){
+                swap(u, v);
+                swap(ru, rv);
+            }
+            make_root(u);
+            par[u] = v;
+            uf[u] = v;
+            ufsi[rv] += ufsi[ru];
+        }else merge_path(u,v);
+    }
+};
+void solve(){
+	ll n,m,q;
+	cin >> n >> m >> q;
+    vector<set<pa>> ad(q+1);
+    vi ans(q);
+    rep(i,m){
+        ll u,v;
+        in(u,v);--u;--v;
+        if(u>v) swap(u,v);
+        ad[0].emplace(u,v);
+    }
+    rep(i,q){
+        ll u,v;
+        in(u,v);--u;--v;
+        if(u>v) swap(u,v);
+        ad[0].erase(pa(u,v));
+        ad[q-i].emplace(u,v);
+    }
+
+    OnlineBridge ob(n);
+
+    rep(i,q){
+        for(auto [u,v] : ad[i]){
+            ob.add_edge(u,v);
+        }
+        ans[i] = ob.cnt;
+    }
+
+    reverse(all(ans));
+    rep(i,q) o(ans[i]);
+}
